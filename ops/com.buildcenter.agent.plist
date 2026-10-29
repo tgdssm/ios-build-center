@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LaunchAgent (nao LaunchDaemon): xcodebuild, codesign e o keychain precisam de uma
+  sessao GUI. Instale como o usuario DEDICADO de build:
+    cp com.buildcenter.agent.plist ~/Library/LaunchAgents/
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.buildcenter.agent.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.buildcenter.agent</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>/Users/REPLACE_ME/build-center/src/server.js</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/REPLACE_ME/build-center</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>BUILD_CENTER_CONFIG</key><string>/Users/REPLACE_ME/build-center/config.json</string>
+    <key>PATH</key><string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/bin</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key>
+  <dict><key>SuccessfulExit</key><false/></dict>
+  <key>ThrottleInterval</key><integer>10</integer>
+  <key>StandardOutPath</key><string>/Users/REPLACE_ME/build-agent/agent.out.log</string>
+  <key>StandardErrorPath</key><string>/Users/REPLACE_ME/build-agent/agent.err.log</string>
+  <key>ProcessType</key><string>Interactive</string>
+</dict>
+</plist>

@@ -1,0 +1,54 @@
+{
+  "http": {
+    "host": "127.0.0.1",
+    "port": 8787,
+    "secureCookies": true,
+    "trustForwardedFor": true
+  },
+  "repo": {
+    "url": "git@ssh.dev.azure.com:v3/ORG/PROJECT/REPO",
+    "mirrorPath": "~/build-agent/repo.git",
+    "defaultBranch": "develop",
+    "branchAllowPatterns": ["^develop$", "^main$", "^feature/", "^hotfix/", "^release/"]
+  },
+  "_toolchainPath": "diretorios extras no PATH do build. Base continua minima.",
+  "toolchainPath": ["~/.rbenv/versions/3.3.4/bin"],
+  "paths": {
+    "workspacesRoot": "~/build-agent/workspaces",
+    "logsRoot": "~/build-agent/logs",
+    "stateFile": "~/build-agent/state.json",
+    "auditFile": "~/build-agent/audit.jsonl"
+  },
+  "limits": {
+    "maxConcurrentBuilds": 1,
+    "maxQueue": 5,
+    "minSecondsBetweenBuilds": 60,
+    "minFreeDiskGB": 25,
+    "keepWorkspaces": 3,
+    "jobTimeoutMinutes": 60,
+    "sessionHours": 12
+  },
+  "environments": {
+    "development": {
+      "label": "Development",
+      "enabled": true,
+      "steps": [
+        { "stage": "installing_dependencies", "program": "/usr/bin/true", "args": [] }
+      ]
+    },
+    "staging": {
+      "label": "Staging",
+      "enabled": true,
+      "steps": [
+        { "stage": "installing_dependencies", "program": "/usr/bin/true", "args": [] }
+      ]
+    },
+    "production": {
+      "label": "Production",
+      "enabled": false,
+      "lockedReason": "Builds de producao ficam bloqueados enquanto o dono do Mac estiver ausente.",
+      "steps": []
+    }
+  },
+  "secretsFile": null
+}

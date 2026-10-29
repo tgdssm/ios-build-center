@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iOS Build Center</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section id="login" class="card hidden">
+        <h1>iOS Build Center</h1>
+        <form id="login-form">
+          <label for="login-name">Usuario</label>
+          <input id="login-name" name="name" autocomplete="username" required />
+          <label for="login-code">Codigo de acesso</label>
+          <input id="login-code" name="code" type="password" autocomplete="current-password" required />
+          <label for="login-totp">Codigo do app autenticador</label>
+          <input id="login-totp" name="totp" type="text" inputmode="numeric" pattern="[0-9]{6}"
+                 maxlength="6" autocomplete="one-time-code" placeholder="000000" />
+          <button type="submit">Entrar</button>
+          <p id="login-error" class="error"></p>
+        </form>
+      </section>
+
+      <section id="main" class="hidden">
+        <header>
+          <h1>iOS Build Center</h1>
+          <div class="who"><span id="who"></span><button id="logout" class="link">sair</button></div>
+        </header>
+
+        <section class="card">
+          <h2>Novo build</h2>
+
+          <label for="branch-search">Branch</label>
+          <input id="branch-search" placeholder="Buscar branch..." autocomplete="off" />
+          <ul id="branch-list" class="branch-list"></ul>
+          <p class="hint"><span id="branch-count"></span><button id="refresh-branches" class="link">atualizar lista</button></p>
+
+          <label>Ambiente</label>
+          <div id="environments" class="environments"></div>
+
+          <div class="dupla">
+            <div>
+              <label for="build-name">Versao</label>
+              <input id="build-name" autocomplete="off" inputmode="decimal" placeholder="5.1.1" />
+            </div>
+            <div>
+              <label for="build-number">Build number</label>
+              <input id="build-number" autocomplete="off" inputmode="numeric" placeholder="253" />
+            </div>
+          </div>
+          <p class="hint" id="version-source"></p>
+
+          <button id="build" disabled>BUILD &amp; SEND TO TESTFLIGHT</button>
+          <p id="build-error" class="error"></p>
+        </section>
+
+        <section class="card" id="current-card">
+          <h2>Build atual</h2>
+          <div id="current"></div>
+        </section>
+
+        <section class="card">
+          <h2>Logs</h2>
+          <pre id="log" class="log"></pre>
+        </section>
+
+        <section class="card">
+          <h2>Historico</h2>
+          <ul id="history" class="history"></ul>
+        </section>
+        <section class="card hidden" id="preflight-card">
+          <h2>Pre-voo</h2>
+          <p class="hint">O que precisa estar configurado nesta maquina para um build terminar sozinho.</p>
+          <ul id="preflight" class="checks"></ul>
+          <button id="preflight-run" class="secundario">Conferir agora</button>
+        </section>
+
+        <section class="card hidden" id="admin-card">
+          <h2>Acesso ao repositorio</h2>
+          <p class="hint" id="cred-status"></p>
+          <label for="cred-pat">Novo token (PAT) do Azure DevOps</label>
+          <input id="cred-pat" type="password" autocomplete="off" autocapitalize="off"
+                 spellcheck="false" placeholder="cole o token aqui" />
+          <button id="cred-save">Testar e gravar</button>
+          <p id="cred-ok" class="ok"></p>
+          <p id="cred-msg" class="error"></p>
+          <p class="hint">
+            Grava somente no store do agent. O token do seu uso pessoal nao e tocado.
+            Escopo necessario: Code (Read).
+          </p>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

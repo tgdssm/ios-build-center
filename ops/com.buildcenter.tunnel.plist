@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tunel de saida (outbound-only). Nenhuma porta aberta no roteador.
+  Antes: cloudflared tunnel login && cloudflared tunnel create build-center
+         cloudflared tunnel route dns build-center builds.SEUDOMINIO.com
+  O config.yml aponta service: http://127.0.0.1:8787
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.buildcenter.tunnel</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/cloudflared</string>
+    <string>tunnel</string>
+    <string>--config</string>
+    <string>/Users/REPLACE_ME/.cloudflared/config.yml</string>
+    <string>run</string>
+    <string>build-center</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>10</integer>
+  <key>StandardOutPath</key><string>/Users/REPLACE_ME/build-agent/tunnel.out.log</string>
+  <key>StandardErrorPath</key><string>/Users/REPLACE_ME/build-agent/tunnel.err.log</string>
+</dict>
+</plist>

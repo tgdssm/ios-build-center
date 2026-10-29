@@ -1,0 +1,13 @@
+{
+  "name": "ios-build-center",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Central remota minima de builds iOS (UI + fila + agent) para um unico Mac",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "useradd": "node src/useradd.js",
+    "prepare-repo": "node src/prepare-repo.js"
+  }
+}

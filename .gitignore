@@ -1,0 +1,23 @@
+node_modules/
+
+# Credenciais vivas: hash, salt e segredo de 2FA de cada conta.
+config.json
+
+# Chave da App Store Connect e afins, lidos pelo agent em tempo de build.
+secrets.env
+secrets/
+
+# A demo e gerada por scripts/demo.sh com os caminhos da maquina de quem roda.
+# Versionar o resultado so produziria um config que nao funciona em lugar nenhum
+# alem daqui — foi exatamente esse o erro que esse arquivo cometia antes.
+.demo/
+config.demo.json
+
+# Configs e notas escritas para um projeto especifico, com detalhes internos
+# dele. Vivem na maquina de quem usa; o repositorio so carrega o exemplo
+# generico (config.example.json).
+INVESTIGACAO-*.md
+config.*.example.json
+
+*.log
+.DS_Store
